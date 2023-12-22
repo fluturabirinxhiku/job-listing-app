@@ -20,7 +20,7 @@ function basePath($path = '')
  */
 function loadView($name, $data = [])
 {
-    $viewPath = basePath("views/{$name}.view.php");
+    $viewPath = basePath("App/views/{$name}.view.php");
     if (file_exists($viewPath)) {
         extract($data);
         require $viewPath;
@@ -35,12 +35,47 @@ function loadView($name, $data = [])
  * @param string $name
  * @return void 
  */
-function loadPartial($name)
+function loadPartial($name, $data = [])
 {
-    $partialPath = basePath("views/partials/{$name}.php");
+    $partialPath = basePath("App/views/partials/{$name}.php");
     if (file_exists($partialPath)) {
+        extract($data);
         require $partialPath;
     } else {
         echo "Partial {$name} not found";
     }
+}
+
+/**
+ * Format salary
+ *
+ * @param string $salary
+ * @return string Formatted salary
+ */
+function formatSalary($salary)
+{
+    return number_format(floatval($salary)) . '€';
+}
+
+/**
+ * Sanitize data
+ *
+ * @param string $data
+ * @return string
+ */
+function sanitize($data)
+{
+    return filter_var(trim($data), FILTER_SANITIZE_SPECIAL_CHARS);
+}
+
+/**
+ * Redirect to the given url
+ *
+ * @param string $url
+ * @return void
+ */
+function redirect($url)
+{
+    header("Location: {$url}");
+    exit;
 }

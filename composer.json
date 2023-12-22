@@ -1,0 +1,15 @@
+{
+  "name": "fluturabirinxhiku/job-listing-app",
+  "description": "Job listing application",
+  "authors": [
+    {
+      "name": "Flutura"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Framework\\": "Framework/",
+      "App\\": "App/"
+    }
+  }
+}
